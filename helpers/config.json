@@ -1,0 +1,9 @@
+{
+    "whitelist":{
+        "deployment":{
+            "max_listed_addresses":100,
+            "starting_fee_amount":0,
+            "time_interval": 10
+        }
+    }
+}

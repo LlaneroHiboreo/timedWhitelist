@@ -9,13 +9,14 @@ contract Whitelist is KeeperCompatibleInterface{
     address payable public immutable feeAccount;
 
     // Max number of addresses
-    uint8 public maxWhitelistedAddresses;
+    uint256 public maxWhitelistedAddresses;
 
     // Counter of actual number of listed addresses
-    uint8 public numAddressesWhitelisted;
+    uint256 public numAddressesWhitelisted;
 
     // Amount fee to enter whitelist
     uint256 public feeAmount;
+    
     // variable to store deploy date
     uint lastTimeStamp;
     uint interval;
@@ -24,11 +25,11 @@ contract Whitelist is KeeperCompatibleInterface{
     mapping(address => bool) public whitelistedAddresses;
 
     // event to notify a new address is submitted
-    event Added(address indexed _user, uint8 _numAddressesWhitelisted);
-    event PaidAdded(address indexed _user, uint8 _numAddressesWhitelisted);
+    event Added(address indexed _user, uint256 _numAddressesWhitelisted);
+    event PaidAdded(address indexed _user, uint256 _numAddressesWhitelisted);
 
     //  Constructor, set max number of adrs
-    constructor(uint8 _maxWhitelistedAddresses, uint256 _feeAmount, uint _interval){
+    constructor(uint256 _maxWhitelistedAddresses, uint256 _feeAmount, uint _interval){
         maxWhitelistedAddresses = _maxWhitelistedAddresses;
         feeAmount=_feeAmount;
         lastTimeStamp=block.timestamp;
