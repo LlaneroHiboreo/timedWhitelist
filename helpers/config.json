@@ -1,9 +1,13 @@
 {
     "whitelist":{
-        "deployment":{
-            "max_listed_addresses":100,
-            "starting_fee_amount":0,
-            "time_interval": 10
-        }
+        "max_listed_addresses":100,
+        "starting_fee_amount":0,
+        "time_interval": 5
+    },
+    "collectibles":{
+        "baseURI": "https://ipfs.io/ipfs/QmYY3McbLiy9AKbt66fnA6xUyRwYqzpx2c6P81ZriSQSRj/car_1.json",
+        "whitelistaddress":"0xe59ad629e48d6beddf527a491df2acf091212e8c",
+        "price":5000000000000000000,
+        "maxtokens":20
     }
 }

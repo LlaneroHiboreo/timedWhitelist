@@ -40,6 +40,7 @@ def test_check_upkeep():
     assert white_sc.feeAmount() == 0
 
     # wait interval and perform upkeep
+    print("[+] Going to sleep!")
     time.sleep(10)
     tx = white_sc.performUpkeep(arr)
     tx.wait(1)

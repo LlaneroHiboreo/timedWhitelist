@@ -1,8 +1,8 @@
-from brownie import Whitelist, accounts, network
+from brownie import NftsColl, accounts, network
 from web3 import Web3
 import json
 
-def deploy_whitelist():
+def deploy_nfts():
     if network.show_active() == 'development':
         deployer=accounts[0]
         print("[*] Using development - ganache network")
@@ -12,11 +12,13 @@ def deploy_whitelist():
     
     # load config with values to deploy
     conf=load_config()
-    max_listed_addresses=conf["whitelist"]["max_listed_addresses"] # max number of addresses to be stored
-    starting_fee_amount=conf["whitelist"]["starting_fee_amount"] # initial cost to enter whitelist
-    time_interval=conf["whitelist"]["time_interval"] # time in seconds to wait until price increase
+    base_uri=conf["collectibles"]["baseURI"]
+    whitelist_adrs=conf["collectibles"]["whitelistaddress"]
+    price=conf["collectibles"]["price"]
+    maxtokens=conf["collectibles"]["maxtokens"]
+
     # deploy contract
-    deployed_contract = Whitelist.deploy(max_listed_addresses, starting_fee_amount, time_interval,{'from':deployer})
+    deployed_contract = NftsColl.deploy(base_uri, whitelist_adrs, price, maxtokens, {'from':deployer})
     
     return deployed_contract
 
@@ -28,5 +30,5 @@ def load_config():
     return conf
     
 def main():
-    deploy_whitelist()
+    deploy_nfts()
     
