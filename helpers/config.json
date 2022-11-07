@@ -2,12 +2,16 @@
     "whitelist":{
         "max_listed_addresses":100,
         "starting_fee_amount":0,
-        "time_interval": 5
+        "time_interval": 5,
+        "address": "0xe59ad629e48d6beddf527a491df2acf091212e8c"
     },
     "collectibles":{
         "baseURI": "https://ipfs.io/ipfs/QmYY3McbLiy9AKbt66fnA6xUyRwYqzpx2c6P81ZriSQSRj/car_1.json",
-        "whitelistaddress":"0xe59ad629e48d6beddf527a491df2acf091212e8c",
+        "address":"0x3D618d402bD780D870E5c1c6855D8B471F34C093",
         "price":5000000000000000000,
         "maxtokens":20
+    },
+    "tokenico":{
+        "address":"0xD25d580359E65F6F478d96d4E167593A7412DDB3"
     }
 }

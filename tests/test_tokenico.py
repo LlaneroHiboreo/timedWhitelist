@@ -1,8 +1,9 @@
 import brownie
 from brownie import accounts
 from web3 import Web3
-from scripts.deploy_nfts import deploy_nfts
 from scripts.deploy import deploy_whitelist
+from scripts.deploy_nfts import deploy_nfts
+from scripts.deploy_ico import deploy_ico
 import pytest, time
 
 @pytest.fixture
@@ -45,7 +46,7 @@ def test_whitelist():
     assert white_sc.feeAmount() == Web3.toWei(2, 'ether')
 
     return white_sc
-
+@pytest.fixture
 def test_nfts(test_whitelist):
     # deploy nft contract
     nft_sc = deploy_nfts()
@@ -109,3 +110,24 @@ def test_nfts(test_whitelist):
 
     return nft_sc
 
+def test_tokenico(test_nfts):
+    # deploy contract
+    tokenico_sc = deploy_ico()
+
+    # CLAIM FUNCTION
+    # check revert ownership
+    #with brownie.reverts("0 Balance of presale nfts"):
+    #    tx = tokenico_sc.claim({'from': accounts[9]})
+        #tx.wait(1)
+    ## users with nfts can only claim
+    tx=tokenico_sc.mint(1, {'from': accounts[7], 'value':Web3.toWei(1, 'ether')})
+    tx.wait(1)
+    #tokenico_sc.claim({'from': accounts[2]})
+    #tokenico_sc.claim({'from': accounts[3]})
+    # check revert amount
+    #with brownie.reverts("No more tokens to claim"):
+    #    tokenico_sc.claim({'from': accounts[1]})
+    #    tokenico_sc.claim({'from': accounts[2]})
+    #    tokenico_sc.claim({'from': accounts[3]})
+    
+    print(test_nfts.balanceOf(accounts[1]))

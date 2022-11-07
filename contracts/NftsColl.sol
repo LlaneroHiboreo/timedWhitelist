@@ -47,7 +47,7 @@ contract NftsColl is ERC721Enumerable, Ownable{
     // Function to start presale
     function startPresale() public onlyOwner{
         presaleStarted=true;
-        presaleEnded=block.timestamp + 5 minutes;
+        presaleEnded=block.timestamp + 1 minutes;
     }
 
     // Function to mint in presale

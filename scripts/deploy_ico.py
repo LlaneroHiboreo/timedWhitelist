@@ -1,8 +1,8 @@
-from brownie import NftsColl, accounts, network
+from brownie import tokenICO, accounts, network
 from web3 import Web3
 import json
 
-def deploy_nfts():
+def deploy_ico():
     if network.show_active() == 'development':
         deployer=accounts[0]
         print("[*] Using development - ganache network")
@@ -12,13 +12,10 @@ def deploy_nfts():
     
     # load config with values to deploy
     conf=load_config()
-    base_uri=conf["collectibles"]["baseURI"]
-    whitelist_adrs=conf["whitelist"]["address"]
-    price=conf["collectibles"]["price"]
-    maxtokens=conf["collectibles"]["maxtokens"]
+    nft_sc = conf['collectibles']['address']
 
     # deploy contract
-    deployed_contract = NftsColl.deploy(base_uri, whitelist_adrs, price, maxtokens, {'from':deployer})
+    deployed_contract = tokenICO.deploy(nft_sc, {'from':deployer})
     
     return deployed_contract
 
@@ -28,7 +25,6 @@ def load_config():
     # Load JSON file
     conf = json.load(f)
     return conf
-    
+  
 def main():
-    deploy_nfts()
-    
+    deploy_ico()
